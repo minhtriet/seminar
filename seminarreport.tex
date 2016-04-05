@@ -90,37 +90,34 @@ Figure 2 shows an overview of the main steps of our method
     \item Calculate arrangement keys
 \end{enumerate}
 
-\section{Additive feature detector}
+\section{Feature detector}
 
-Feature descriptors
-GRSD- and VORSCH
-RSD → GRSD → GRSD-
-C³-HLAC + GRSD- = VORSCH
-RSD
-GRSD
-GRSD-
-C³-HLAC
-VORSCH
 
-RSD
+\subsection{RSD}
 Encodes the radial relationship of the point and its neighborhood. 
 For every pair of the keypoint with a neighbor, computes the distance between them and the difference between their normals. 
 Find a sphere that fits the points and their normals.
 From all the point-neighbor spheres, only the ones with the maximum and minimum radii are kept and saved to the descriptor of that point. 
 
-RSD
 When two points lie on a flat surface, the sphere radius will be infinite. 
 If they lie on the curved face of a cylinder, the radius will be more or less the same as that of the cylinder. 
 This allows us to tell objects apart with RSD. The algorithm takes a parameter that sets the maximum radius at which the points will be considered to be part of a plane.
 
 
-GRSD
-Surface categorization is built based on a set of categories (Sphere, box, rectangle, cylindrical, plate).
-The whole cluster is classified into one of these categories
-GRSD is a histogram that counts the number of transitions between different types of voxels.
+\subsection{GRSD}
+GRSD is a histogram that counts the number of transitions between different types of voxels (Sphere, box, rectangle, cylindrical, plate).
+
+\begin{figure}[!htbp]
+    \centering
+    \includegraphics[width=0.5\linewidth]{pic/rsd.png}
+    \caption{Rotation-invariant  C 3 -HLAC  can  not  differentiate the  die  from  the  cube  (identical  histograms  on  the  left), while GRSD/GRSD 2 can not differentiate the different colors (identical histograms on the right). Their combination how- ever produces distinct signatures for all of them. Photo courtesy: \citep{Marton2012} }
+    \label{fig::photo_nuts}    
+\end{figure}
 
 \subsection{GRSD-}
 adapted the GRSD feature to be additive, by simplifying it to simple histogram of neighborhoods of surfaces of dierent type, neglecting the ray-tracing step
+
+\subsection{C³-HLAC}
 
 
 
